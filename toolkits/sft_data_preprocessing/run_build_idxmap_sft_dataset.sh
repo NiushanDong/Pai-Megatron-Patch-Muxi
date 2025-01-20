@@ -24,7 +24,7 @@ else
   packing_option=""
 fi
 
-cmd="python build_idxmap_sft_dataset.py \
+cmd="python $CURRENT_DIR/build_idxmap_sft_dataset.py \
   --input ${input_data_path} \
   --output-prefix ${output_data_path} \
   --patch-tokenizer-type ${tokenizer} \

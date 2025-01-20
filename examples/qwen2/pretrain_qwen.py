@@ -19,6 +19,7 @@ from typing import Union
 import torch
 import torch._dynamo
 from megatron.core import mpu
+# from megatron.core.datasets.blended_megatron_dataset_builder_pai import (
 from megatron.core.datasets.blended_megatron_dataset_builder import (
     BlendedMegatronDatasetBuilder,
 )
@@ -42,7 +43,7 @@ from megatron_patch.data import build_pretrain_dataset_from_original
 from megatron_patch.data.utils import get_batch_on_this_tp_rank_original, get_batch_on_this_tp_rank_idxmap_sft
 from megatron_patch.model.qwen2.layer_specs import (
     get_gpt_layer_local_spec,
-    get_gpt_layer_with_transformer_engine_spec,
+    # get_gpt_layer_with_transformer_engine_spec,
 )
 from megatron_patch.model.qwen2.model import GPTModel
 from megatron_patch.model.qwen2.transformer_config import Qwen2TransformerConfig

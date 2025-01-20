@@ -16,8 +16,9 @@ MG2HF=$8
 HF_CKPT_PATH=${9}
 
 CURRENT_DIR="$( cd "$( dirname "$0" )" && pwd )"
-MEGATRON_PATH=$( dirname $(dirname $( dirname ${CURRENT_DIR})))
-export PYTHONPATH=$PYTHONPATH:${MEGATRON_PATH}:${MEGATRON_PATH}/PAI-Megatron-LM-240718
+MEGATRON_PATH=${CURRENT_DIR}/../../../
+# export PYTHONPATH=$PYTHONPATH:${MEGATRON_PATH}:${MEGATRON_PATH}/PAI-Megatron-LM-240718
+export PYTHONPATH=$PYTHONPATH:${MEGATRON_PATH}:${MEGATRON_PATH}/Megatron-LM-Maca
 
 
 if [ $MODEL_SIZE = 0.5B ]; then
@@ -184,11 +185,6 @@ elif [ $PR = bf16 ]; then
 
 fi
 
-if [ $PP -gt 1 ]; then
-    tie_option=" \
-        --untie-embeddings-and-output-weights \
-        "
-fi
 
 DISTRIBUTED_ARGS="--nproc_per_node 1 --nnodes 1 --node_rank 0 --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 

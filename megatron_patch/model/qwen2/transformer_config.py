@@ -37,3 +37,5 @@ class Qwen2TransformerConfig(TransformerConfig):
     max_position_embeddings: int = None
 
     moe_aux_loss_coeff: float = 0.0
+
+    activation_func_fp8_input_store: bool = False
