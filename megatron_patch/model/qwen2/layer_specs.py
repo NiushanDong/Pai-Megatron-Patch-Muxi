@@ -33,7 +33,7 @@ from megatron.core.tensor_parallel.layers import ColumnParallelLinear, RowParall
 from megatron.core.transformer.dot_product_attention import DotProductAttention
 from megatron.core.transformer.enums import AttnMaskType
 from megatron.core.transformer.identity_op import IdentityOp
-# from megatron.core.transformer.custom_layers.norm import Norm
+from megatron.core.transformer.custom_layers.norm import Norm
 from megatron.core.transformer.spec_utils import ModuleSpec
 
 from .transformer.mlp import MLP, MLPSubmodules
@@ -81,8 +81,8 @@ def get_gpt_layer_local_spec(
     return ModuleSpec(
         module=TransformerLayer,
         submodules=TransformerLayerSubmodules(
-            # input_layernorm=Norm,
-            input_layernorm=Qwen2RMSNorm,
+            input_layernorm=Norm,
+            # input_layernorm=Qwen2RMSNorm,
             self_attention=ModuleSpec(
                 module=SelfAttention,
                 params={"attn_mask_type": AttnMaskType.causal},
@@ -95,8 +95,8 @@ def get_gpt_layer_local_spec(
                 ),
             ),
             self_attn_bda=get_bias_dropout_add,
-            # pre_mlp_layernorm=Norm,
-            pre_mlp_layernorm=Qwen2RMSNorm,
+            pre_mlp_layernorm=Norm,
+            # pre_mlp_layernorm=Qwen2RMSNorm,
             mlp=mlp,
             mlp_bda=get_bias_dropout_add,
             sharded_state_dict_keys_map={
